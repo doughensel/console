@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>console fallback test</title>
+
+<style>
+#console{ 
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	height: 3px;
+}
+	#console:hover,
+	#console:focus{ height: auto; }
+</style>
+	
+</head>
+<body>
+
+<p>Hello World</p>	
+
+<script type="text/javascript">
+
+if (typeof console != "object") {
+	window.console = {
+		init: function(){
+			window.document.body.innerHTML += '<div id="console" tabindex="999"><ul id="consoleList"></ul></div>';
+		},
+		log: function( value ){
+			window.document.getElementById('consoleList').innerHTML += '<li>' + value + '</li>';
+		}
+	};
+	console.init();
+}
+
+console.log( 'test' );
+
+</script>
+
+</body>
+</html>
